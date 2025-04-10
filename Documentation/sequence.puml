@@ -1,0 +1,66 @@
+@startuml
+
+participant ComponentList  #eaecee
+participant Component  #eaecee
+
+participant ApplicationModel #abebc6
+participant QObjectListModel #abebc6
+
+participant ApplicationViewModel #fcf3cf
+participant ApplicationView #f6ddcc
+
+participant ComponentViewModel #fcf3cf
+participant ComponentView #f6ddcc
+
+group Initialize
+	loop number < ComponentList.numberOfComponents
+		ApplicationModel --> ComponentList : getComponent(number)
+		ComponentList --> ApplicationModel : Component
+		ApplicationModel --> ApplicationViewModel : signal componentAdded(Component.name)
+		ApplicationViewModel --> ApplicationViewModel : onComponentAdded(name)
+	end
+end
+
+group Add Component
+	ApplicationView --> ApplicationViewModel : addComponentRequest(name)
+	ApplicationViewModel --> ApplicationModel : addComponent(name)
+	ApplicationModel --> ComponentList : addComponent(name)
+	ApplicationModel --> ApplicationViewModel : signal componentAdded(name)
+	ApplicationViewModel --> ApplicationViewModel : onComponentAdded(name)
+end
+
+group ApplicationViewModel.onComponentAdded
+	ApplicationViewModel --> ApplicationModel : getComponent(name)
+	ApplicationModel --> ApplicationViewModel : Component
+	ApplicationViewModel --> QObjectListModel : create ComponentViewModel and add to components list
+	QObjectListModel --> ApplicationView : change property componentsList
+end
+
+group Delete Component
+	ApplicationView --> ApplicationViewModel : deleteComponentRequest(name)
+	ApplicationViewModel --> ApplicationModel : deleteComponent(name)
+	ApplicationModel --> ComponentList : deleteComponent(name)
+	ApplicationModel --> ApplicationViewModel : signal componentDeleted(name)
+	ApplicationViewModel --> ApplicationViewModel : onComponentDeleted(name)
+end
+
+group ApplicationViewModel.onComponentDeleted
+	ApplicationViewModel --> QObjectListModel : find ComponentViewModel by name
+	QObjectListModel --> ApplicationViewModel : ComponentViewModel
+	ApplicationViewModel --> QObjectListModel : delete ComponentViewModel from components list
+	QObjectListModel --> ApplicationView : change property componentsList
+end
+
+group Select Component
+	ApplicationView --> ApplicationViewModel : selectComponentRequest(name)
+	ApplicationViewModel --> ApplicationViewModel : onComponentSelected(name)
+end
+
+group ApplicationViewModel.onComponentSelected
+	ApplicationViewModel --> QObjectListModel : find ComponentViewModel by name
+	QObjectListModel --> ApplicationViewModel : componentViewModel
+	ApplicationViewModel --> ApplicationViewModel : selectedComponent = componentViewModel
+	ApplicationViewModel --> ApplicationView : property selectedComponent
+end
+
+@enduml
