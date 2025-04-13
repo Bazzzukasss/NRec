@@ -1,0 +1,113 @@
+@startuml
+
+class Component  #eaecee {
+	+ std::string name () const
+	+ double massFlow () const
+	+ double rotationalSpeed () const
+
+	+ void setName (const std::string& name ) const
+	+ void setMassFlow (const double& massFlow ) const
+	+ void setRotationalSpeed(const double& rotationalSpeed) const
+
+	+ std::function<void()> onChangedCallbak()
+}
+
+class ComponentList  #eaecee {
+	+ size_t numberOfComponents() const;
+	+ Component* getComponent (const int number) const
+	+ Component* getComponent (const std::string& name) const
+
+	+ bool addComponent (const std::string& name);
+	+ bool deleteComponent (const std::string& name);
+
+	+ std::function<void(const std::string&)> onComponentAddedCallbak()
+	+ std::function<void(const std::string&)> onComponentRemovedCallbak()
+}
+
+ComponentList "1" *-- "many" Component
+
+class ApplicationModel #abebc6 {
+	+ size_t numberOfComponents() const
+	+ Component* getComponent (const int number) const
+	+ Component* getComponent (const std::string& name) const
+	+ bool addComponent (const std::string& name)
+	+ bool deleteComponent (const std::string& name)
+
+	+ void initialize()
+
+	+Q_SIGNAL componentAdded(const QString& name)
+	+Q_SIGNAL componentDeleted(const QString& name)
+
+	-ComponentList components
+}
+
+ApplicationModel -|> QObject
+ApplicationModel "1" *-- "1" ComponentList
+
+class ApplicationViewModel #fcf3cf {
+	+ Q_PROPERTY QObjectListModel<ComponentViewModel>* components
+	+ Q_PROPERTY ComponentViewModel* selectedComponent
+
+	+ Q_IVOKABLE void addComponentRequest(const QString& name)
+	+ Q_IVOKABLE void deleteComponentRequest(const QString& name)
+	+ Q_IVOKABLE void selectComponentRequest(const QString& name)
+
+	- void onComponentAdded(const QString& name)
+	- void onComponentDeleted(const QString& name)
+	- void onComponentSeleted(const QString& name)
+
+	- QObjectListModel<ComponentViewModel>* components
+	- ComponentViewModel* selectedComponent
+	- ApplicationModel* ApplicationModel
+}
+
+ApplicationViewModel -|> QObject
+ApplicationViewModel "1" *-- "1" ApplicationModel
+ApplicationViewModel "1" *-- "1" QObjectListModel
+ApplicationViewModel "1" *-- "1" ComponentViewModel
+
+class QObjectListModel #abebc6 {
+	+ void addItem(ComponentViewModel)
+	+ void deleteItem(ComponentViewModel)
+
+	Q_SIGNAL modelChanged()
+}
+
+QObjectListModel -|> QAbstractListModel
+
+abstract class QAbstractListModel #abebc6 {
+}
+
+class QObject #abebc6{
+
+}
+
+QAbstractListModel -|> QObject
+
+class ComponentViewModel #fcf3cf {
+	+ Q_PROPERTY name
+	+ Q_PROPERTY massFlow
+	+ Q_PROPERTY rotationalSpeed
+
+	- Component* component
+}
+
+ComponentViewModel "1" o-- "1" Component
+ComponentViewModel -|> QObject
+
+class ApplicationView  #f6ddcc {
+	property ApplicationViewModel
+	property selectedComponent
+	property componentsList
+}
+
+ApplicationView "1" o-- "1"  ApplicationViewModel
+
+class ComponentView  #f6ddcc {
+	property ComponentViewModel
+}
+
+ComponentView "1" o-- "1" ComponentViewModel
+ApplicationView --> ComponentView
+
+@enduml
