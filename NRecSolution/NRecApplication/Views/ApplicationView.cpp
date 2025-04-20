@@ -16,8 +16,9 @@ ApplicationView::ApplicationView(ApplicationViewModel *applicationViewModel,
                                  QWidget *parent)
     : QMainWindow{parent}, m_applicationViewModel{applicationViewModel}
 {
-    auto centralWidget = new QWidget(this);
+    setWindowTitle(tr("NREC POC Application"));
 
+    auto centralWidget = new QWidget(this);
     auto addButton = new QPushButton(tr("Add Component"), this);
     auto delButton = new QPushButton(tr("Delete Component"), this);
 
@@ -52,6 +53,7 @@ void ApplicationView::setSelectedComponent(ComponentViewModel *componentViewMode
 {
     auto componentView = new ComponentView(componentViewModel, this);
 
+    componentView->resize(200, 200);
     componentView->exec();
 }
 

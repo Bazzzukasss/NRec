@@ -11,6 +11,7 @@ ComponentView::ComponentView(ComponentViewModel *componentViewModel,
     : QDialog{parent}, m_componentViewModel{componentViewModel}
 {
     setAttribute(Qt::WA_DeleteOnClose);
+    setWindowTitle(tr("Component Editor"));
 
     auto nameLabel = new QLabel(tr("Name"),this);
     m_nameEdit = new QLineEdit(this);

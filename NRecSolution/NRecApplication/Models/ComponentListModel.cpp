@@ -11,7 +11,7 @@ void ComponentListModel::addComponent(ComponentModel *componentModel)
     beginResetModel();
     m_componentModels.push_back(componentModel);
     connect(componentModel, &ComponentModel::nameChanged,
-            this, [&](){ dataChanged({},{}); });
+            this, [&](){ emit dataChanged({},{}); });
     endResetModel();
 }
 
@@ -35,6 +35,7 @@ int ComponentListModel::rowCount(const QModelIndex &parent) const
 
 int ComponentListModel::columnCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent)
     return 1;
 }
 
@@ -68,5 +69,6 @@ QModelIndex ComponentListModel::index(int row, int column, const QModelIndex &pa
 
 QModelIndex ComponentListModel::parent(const QModelIndex &index) const
 {
+    Q_UNUSED(index)
     return QModelIndex();
 }
