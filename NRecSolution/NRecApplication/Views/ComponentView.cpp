@@ -50,9 +50,9 @@ ComponentView::ComponentView(ComponentViewModel *componentViewModel,
     connect(m_nameEdit, &QLineEdit::editingFinished,
             this, &ComponentView::onNameChanged);
     connect(m_massFlowSpin, &QDoubleSpinBox::valueChanged,
-            this, &ComponentView::setMassFlow);
+            this, &ComponentView::onMassFlowChanged);
     connect(m_rotationalSpeedSpin, &QDoubleSpinBox::valueChanged,
-            this, &ComponentView::setRotationalSpeed);
+            this, &ComponentView::onRotationalSpeedChanged);
 }
 
 void ComponentView::onNameChanged()
