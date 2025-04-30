@@ -13,6 +13,7 @@ SOURCES += \
     ViewModels/ComponentViewModel.cpp \
     Views/ApplicationView.cpp \
     Views/ComponentView.cpp \
+    Views/CustomWidgets.cpp \
     main.cpp
 
 HEADERS += \
@@ -22,7 +23,8 @@ HEADERS += \
     ViewModels/ApplicationViewModel.h \
     ViewModels/ComponentViewModel.h \
     Views/ApplicationView.h \
-    Views/ComponentView.h
+    Views/ComponentView.h \
+    Views/CustomWidgets.h
 
 FORMS += \ 
 

@@ -4,8 +4,8 @@
 #include <QDialog>
 
 class ComponentViewModel;
-class QDoubleSpinBox;
-class QLineEdit;
+class DoubleSpinBox;
+class LineEditExt;
 
 class ComponentView : public QDialog
 {
@@ -24,9 +24,9 @@ private:
 
 private:
     ComponentViewModel* m_componentViewModel{nullptr};
-    QLineEdit* m_nameEdit{nullptr};
-    QDoubleSpinBox* m_massFlowSpin{nullptr};
-    QDoubleSpinBox* m_rotationalSpeedSpin{nullptr};
+    LineEditExt* m_nameEdit{nullptr};
+    DoubleSpinBox* m_massFlowSpin{nullptr};
+    DoubleSpinBox* m_rotationalSpeedSpin{nullptr};
 };
 
 #endif // COMPONENTVIEW_H

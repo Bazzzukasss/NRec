@@ -37,5 +37,61 @@
         <file>Resources/Icons/radio_unchecked_disabled.png</file>
         <file>Resources/Icons/radio_unchecked_focus.png</file>
         <file>Resources/Icons/sizegrip.png</file>
+        <file>Resources/Icons/arrow_down_m.png</file>
+        <file>Resources/Icons/arrow_down_m_disabled.png</file>
+        <file>Resources/Icons/arrow_down_m_error.png</file>
+        <file>Resources/Icons/arrow_down_s.png</file>
+        <file>Resources/Icons/arrow_down_s_disabled.png</file>
+        <file>Resources/Icons/arrow_down_s_error.png</file>
+        <file>Resources/Icons/arrow_left_s.png</file>
+        <file>Resources/Icons/arrow_right_b.png</file>
+        <file>Resources/Icons/arrow_right_s.png</file>
+        <file>Resources/Icons/arrow_up_m.png</file>
+        <file>Resources/Icons/arrow_up_m_disabled.png</file>
+        <file>Resources/Icons/arrow_up_m_error.png</file>
+        <file>Resources/Icons/arrow_up_s.png</file>
+        <file>Resources/Icons/arrow_up_s_disabled.png</file>
+        <file>Resources/Icons/arrow_up_s_error.png</file>
+        <file>Resources/Icons/branch_closed.png</file>
+        <file>Resources/Icons/branch_closed-on.png</file>
+        <file>Resources/Icons/branch_open.png</file>
+        <file>Resources/Icons/branch_open-on.png</file>
+        <file>Resources/Icons/checkbox_indeterminate.png</file>
+        <file>Resources/Icons/checkbox_indeterminate_disabled.png</file>
+        <file>Resources/Icons/checkbox_indeterminate_focus.png</file>
+        <file>Resources/Icons/close.png</file>
+        <file>Resources/Icons/close-hover.png</file>
+        <file>Resources/Icons/close-pressed.png</file>
+        <file>Resources/Icons/down_arrow.png</file>
+        <file>Resources/Icons/down_arrow_disabled.png</file>
+        <file>Resources/Icons/drop_arrow.png</file>
+        <file>Resources/Icons/drop_arrow_disabled.png</file>
+        <file>Resources/Icons/drop_arrow_hover.png</file>
+        <file>Resources/Icons/error_icon.png</file>
+        <file>Resources/Icons/error_icon_light.png</file>
+        <file>Resources/Icons/error_icon_lighter.png</file>
+        <file>Resources/Icons/Hmovetoolbar.png</file>
+        <file>Resources/Icons/Hsepartoolbar.png</file>
+        <file>Resources/Icons/info_icon.png</file>
+        <file>Resources/Icons/info_icon_light.png</file>
+        <file>Resources/Icons/info_icon_lighter.png</file>
+        <file>Resources/Icons/left_arrow.png</file>
+        <file>Resources/Icons/left_arrow_disabled.png</file>
+        <file>Resources/Icons/qrrow_left_b.png</file>
+        <file>Resources/Icons/right_arrow.png</file>
+        <file>Resources/Icons/right_arrow_disabled.png</file>
+        <file>Resources/Icons/stylesheet-branch-end.png</file>
+        <file>Resources/Icons/stylesheet-branch-more.png</file>
+        <file>Resources/Icons/stylesheet-vline.png</file>
+        <file>Resources/Icons/transparent.png</file>
+        <file>Resources/Icons/undock.png</file>
+        <file>Resources/Icons/up_arrow.png</file>
+        <file>Resources/Icons/up_arrow_disabled.png</file>
+        <file>Resources/Icons/Vmovetoolbar.png</file>
+        <file>Resources/Icons/Vsepartoolbar.png</file>
+        <file>Resources/Icons/warning_icon.png</file>
+        <file>Resources/Icons/warning_icon_light.png</file>
+        <file>Resources/Icons/warning_icon_lighter.png</file>
+        <file>Resources/Icons/error.png</file>
     </qresource>
 </RCC>

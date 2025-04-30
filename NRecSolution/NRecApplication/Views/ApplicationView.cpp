@@ -1,6 +1,7 @@
 #include "ApplicationView.h"
 #include "ViewModels/ApplicationViewModel.h"
 #include "Views/ComponentView.h"
+#include "Views/CustomWidgets.h"
 #include "Models/ComponentListModel.h"
 
 #include <QApplication>
@@ -9,7 +10,6 @@
 #include <QVBoxLayout>
 #include <QListView>
 #include <QItemSelectionModel>
-#include <QPushbutton>
 #include <QKeyEvent>
 
 ApplicationView::ApplicationView(ApplicationViewModel *applicationViewModel,
@@ -19,8 +19,13 @@ ApplicationView::ApplicationView(ApplicationViewModel *applicationViewModel,
     setWindowTitle(tr("NREC POC Application"));
 
     auto centralWidget = new QWidget(this);
-    auto addButton = new QPushButton(tr("Add Component"), this);
-    auto delButton = new QPushButton(tr("Delete Component"), this);
+    auto addButton = new PushButton(tr("Add Component"), this);
+    addButton->setPriority(Priority::Primary);
+    addButton->setSizeScale(SizeScale::Medium);
+
+    auto delButton = new PushButton(tr("Delete Component"), this);
+    delButton->setPriority(Priority::Secondary);
+    delButton->setSizeScale(SizeScale::Medium);
 
     m_listView = new QListView(this);
     m_listView->setModel(applicationViewModel->getComponentListModel());

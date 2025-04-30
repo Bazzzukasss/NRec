@@ -1,10 +1,8 @@
 #include "ComponentView.h"
 #include "ViewModels/ComponentViewModel.h"
+#include "Views/CustomWidgets.h"
 
-#include <QLineEdit>
-#include <QDoubleSpinBox>
 #include <QVBoxLayout>
-#include <QLabel>
 
 ComponentView::ComponentView(ComponentViewModel *componentViewModel,
                              QWidget *parent)
@@ -13,16 +11,25 @@ ComponentView::ComponentView(ComponentViewModel *componentViewModel,
     setAttribute(Qt::WA_DeleteOnClose);
     setWindowTitle(tr("Component Editor"));
 
-    auto nameLabel = new QLabel(tr("Name"),this);
-    m_nameEdit = new QLineEdit(this);
+    auto nameLabel = new Label(tr("Name"),this);
+    nameLabel->setTypography(Typography::Caption1Strong);
 
-    auto massFlowLabel = new QLabel(tr("Mass Flow"),this);
-    m_massFlowSpin = new QDoubleSpinBox(this);
+    m_nameEdit = new LineEditExt(this);
+    m_nameEdit->lineEdit()->setSizeScale(SizeScale::Small);
+
+    auto massFlowLabel = new Label(tr("Mass Flow"),this);
+    massFlowLabel->setTypography(Typography::Caption1Strong);
+
+    m_massFlowSpin = new DoubleSpinBox(this);
+    m_massFlowSpin->setSizeScale(SizeScale::Small);
     m_massFlowSpin->setDecimals(1);
     m_massFlowSpin->setMaximum(std::numeric_limits<int>::max());
 
-    auto rotationalSpeedLabel = new QLabel(tr("Rotationals Speed"),this);
-    m_rotationalSpeedSpin = new QDoubleSpinBox(this);
+    auto rotationalSpeedLabel = new Label(tr("Rotationals Speed"),this);
+    rotationalSpeedLabel->setTypography(Typography::Caption1Strong);
+
+    m_rotationalSpeedSpin = new DoubleSpinBox(this);
+    m_rotationalSpeedSpin->setSizeScale(SizeScale::Small);
     m_rotationalSpeedSpin->setDecimals(0);
     m_rotationalSpeedSpin->setMaximum(std::numeric_limits<int>::max());
 
@@ -47,7 +54,7 @@ ComponentView::ComponentView(ComponentViewModel *componentViewModel,
     connect(componentViewModel, &ComponentViewModel::rotationalSpeedChanged,
             this, &ComponentView::setRotationalSpeed);
 
-    connect(m_nameEdit, &QLineEdit::editingFinished,
+    connect(m_nameEdit, &LineEditExt::validEditingFinished,
             this, &ComponentView::onNameChanged);
     connect(m_massFlowSpin, &QDoubleSpinBox::valueChanged,
             this, &ComponentView::onMassFlowChanged);
@@ -57,7 +64,7 @@ ComponentView::ComponentView(ComponentViewModel *componentViewModel,
 
 void ComponentView::onNameChanged()
 {
-    m_componentViewModel->setName(m_nameEdit->text());
+    m_componentViewModel->setName(m_nameEdit->lineEdit()->text());
 }
 
 void ComponentView::onMassFlowChanged()
@@ -72,9 +79,9 @@ void ComponentView::onRotationalSpeedChanged()
 
 void ComponentView::setName(const QString& name)
 {
-    if (m_nameEdit->text() != name)
+    if (m_nameEdit->lineEdit()->text() != name)
     {
-        m_nameEdit->setText(name);
+        m_nameEdit->lineEdit()->setText(name);
     }
 }
 
